@@ -1,0 +1,48 @@
+.completed {
+  text-decoration: line-through;
+}
+
+.button-link {
+  border: none;
+  cursor: pointer;
+  color: hotpink;
+  background: transparent;
+}
+
+.button-link:hover {
+  text-decoration: underline;
+}
+
+.button-link:focus {
+  outline: none;
+}
+.ReactModal__Overlay.ReactModal__Overlay--after-open {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+}
+
+.ReactModal__Content.ReactModal__Content--after-open {
+  top: 50% !important;
+  left: 50% !important;
+  right: initial !important;
+  bottom: initial !important;
+  min-width: 500px;
+  max-width: 500px;
+  max-height: 500px;
+  transform: translate(-50%, -50%);
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transform: translateY(-100px);
+  transition: all 250ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
+  transform: translateY(-100px);
+}
