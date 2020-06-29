@@ -67,7 +67,7 @@ class CreateEditTodoComponent extends Component {
     return (
       <div className="container mt-3">
         <h3>{this.state.page}</h3>
-
+        <hr />
         <Formik
           enableReinitialize={true}
           initialValues={this.state}
@@ -77,10 +77,11 @@ class CreateEditTodoComponent extends Component {
           {({ errors, touched }) => (
             <Form>
               <div className="form-group">
-                <label htmlFor="title">Title</label>
+                <label htmlFor="title">Summary</label>
                 <Field
                   name="title"
                   type="text"
+                  placeholder="Summary"
                   className={
                     "form-control" +
                     (errors.title && touched.title ? " is-invalid" : "")
@@ -98,6 +99,8 @@ class CreateEditTodoComponent extends Component {
                 <Field
                   name="description"
                   as="textarea"
+                  rows="4"
+                  placeholder="Description"
                   className={
                     "form-control" +
                     (errors.description && touched.description
@@ -134,9 +137,7 @@ class CreateEditTodoComponent extends Component {
                     className="invalid-feedback"
                   />
                 </div>
-              </div>
 
-              <div className="form-row">
                 <div className="form-group col-6">
                   <label>Due Date</label>
                   <Field
@@ -156,6 +157,7 @@ class CreateEditTodoComponent extends Component {
                 </div>
               </div>
 
+              <hr />
               <div className={`form-group + ${style.flexButtonDiv}`}>
                 <button type="submit" className="btn btn-primary mr-2">
                   {this.state.page}

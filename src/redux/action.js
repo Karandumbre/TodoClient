@@ -26,10 +26,10 @@ export const fetchTodoDataRequestFailure = (error) => {
 
 
 
-export const fetchRequest = () => {
+export const fetchRequest = (title = 'title', order = true) => {
     return (dispatch) => {
         dispatch(fetchTodoDataRequest())
-        axios.get(devUrl).then(res => {
+        axios.get(`${devUrl}/${title}/${order}`).then(res => {
             dispatch(fetchTodoDataRequestSuccess(res.data))
         }).catch(error => {
             dispatch(fetchTodoDataRequestFailure(error.message))

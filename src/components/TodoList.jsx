@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { DeleteTodo, UpdateTodo, fetchRequest } from "../redux/action";
+import { DeleteTodo, UpdateTodo } from "../redux/action";
 import Modal from "react-modal";
 import CreateEditTodoComponent from "./CreateEditTodoComponent";
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
 import style from "./../styles/style.module.css";
 
 Modal.setAppElement("#root");
@@ -57,31 +57,32 @@ export class TodoList extends Component {
           <td className={this.props.todo.isCompleted ? "completed" : ""}>
             {this.props.todo.dueDate}
           </td>
-          <td>{this.props.todo.isCompleted ? "Completed" : "Pending"}</td>
           <td className={style.actionsTd}>
-            <FaEdit
+            <button
+              className="btn btn-primary mr-3 fa fa-edit"
               onClick={this.openCloseModal}
-              cursor="pointer"
-              className="mr-2"
-            />
+            >
+              <FaEdit cursor="pointer" className="mr-2" color="text-white" />
+            </button>
+
             <span>
               <button
-                className={`btn btn-sm p-1 mr-2 ${
-                  !this.props.todo.isCompleted ? "btn-primary" : "btn-info"
+                className={`btn btn-sm p-1 mr-3 ${
+                  !this.props.todo.isCompleted ? "btn-success" : "btn-info"
                 }`}
                 onClick={this.updateTodo}
               >
                 {this.props.todo.isCompleted ? "Re-Open" : "Done"}
               </button>
             </span>
-            <FaTrashAlt
+            <button
+              className="btn btn-danger fa fa-trash"
               onClick={this.deleteTodo}
-              color="red"
-              cursor="pointer"
-            />
+            >
+              <FaRegTrashAlt color="text-white" cursor="pointer" />
+            </button>
           </td>
         </tr>
-
         <Modal
           isOpen={this.state.openModal}
           onRequestClose={this.openCloseModal}
@@ -98,7 +99,6 @@ export class TodoList extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTodoListRequest: () => dispatch(fetchRequest()),
     UpdateTodoRequest: (id, data) => dispatch(UpdateTodo(id, data)),
     DeleteTodoRequest: (id) => dispatch(DeleteTodo(id)),
   };
